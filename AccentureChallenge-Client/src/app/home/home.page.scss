@@ -1,0 +1,32 @@
+.country-list {
+  margin: 5px 0;
+  border-bottom: 1px solid rgb(115, 106, 106);
+}
+
+hr {
+  border-bottom: 1px solid rgb(115, 106, 106);
+}
+
+.country-list p {
+  font-size: 1.2em;
+}
+
+.good {
+  color: #02d517;
+}
+
+.moderate {
+  color: #9ad315e3;
+}
+
+.unhealthy {
+  color: #cc8f0c;
+}
+
+.very-unhealthy {
+  color: #dd4808;
+}
+
+.hazardous {
+  color: #c50914;
+}

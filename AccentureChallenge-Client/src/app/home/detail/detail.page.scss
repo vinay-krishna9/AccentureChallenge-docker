@@ -1,0 +1,32 @@
+.card-container {
+  border-radius: 15px;
+}
+
+.card-container img{
+  width: 100%;
+  padding: 0;
+}
+
+.card-container p {
+  font-size: 1.2em;
+}
+
+.good {
+  color: #02d517;
+}
+
+.moderate {
+  color: #9ad315e3;
+}
+
+.unhealthy {
+  color: #cc8f0c;
+}
+
+.very-unhealthy {
+  color: #dd4808;
+}
+
+.hazardous {
+  color: #c50914;
+}

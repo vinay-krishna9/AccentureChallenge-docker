@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="primary">
+      <ion-button color="dark" (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title> Home </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list inset>
+    <ion-list-header>
+      <h4>Air Quality Index</h4>
+    </ion-list-header>
+    <hr/>
+    <ion-item
+      *ngFor="let country of countries"
+      [routerLink]="['./', country._id]"
+      class="country-list"
+    >
+      <ion-avatar slot="start">
+        <ion-img [src]="country.flag"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ country.country }}</h2>
+        <h3>Population: {{ country.population | number }}</h3>
+        <h3>City: {{ country.city }}</h3>
+        <h3>AQI: {{ country.airQuality | number }}</h3>
+      </ion-label>
+      <ion-note
+        slot="end"
+        [ngClass]="{
+            'good': country.airQuality < '20',
+            'moderate': country.airQuality < '40' && country.airQuality >= '20',
+            'unhealthy': country.airQuality < '60' && country.airQuality >= '40',
+            'very-unhealthy': country.airQuality < '80' && country.airQuality >= '60',
+            'hazardous': country.airQuality >= '80'
+          }"
+      >
+        <p>{{ getRank(country.airQuality) }}</p>
+      </ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+    <ion-infinite-scroll-content
+      toadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

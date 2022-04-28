@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    networks:
+      - shared-network
+
+  mongo-seed:
+    build:
+      context: ./mongo_seed
+      dockerfile: Dockerfile
+    depends_on:
+      - mongo
+    networks:
+      - shared-network
+
+  server:
+    container_name: server
+    restart: unless-stopped
+    image: challenge-server
+    build:
+      context: AccentureChallenge-Server
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - shared-network
+    depends_on:
+      - mongo
+
+  client:
+    container_name: client
+    restart: unless-stopped
+    image: challenge-client
+    build: 
+      context: AccentureChallenge-Client
+      dockerfile: Dockerfile
+    ports:
+      - 80:80/tcp
+    networks:
+      - shared-network
+    depends_on:
+      - server
+    
+networks:
+  shared-network:

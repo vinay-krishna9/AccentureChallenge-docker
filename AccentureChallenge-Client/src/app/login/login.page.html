@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="loginData">
+    <ion-card class="card-container">
+      <ion-text color="primary" class="ion-text-center"
+        ><h1>Welcome</h1>
+       </ion-text>
+       <ion-text class="ion-text-center">
+        <h4>Air Quality Monitoring</h4>
+       </ion-text>
+      <ion-list>
+        <ion-item lines="full" class="ion-margin">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="text" formControlName="email" required></ion-input>
+        </ion-item>
+        <div class="error-container">
+          <span
+            class="errmsg"
+            *ngIf="loginData.get('email').hasError('required') && loginData.get('email').touched"
+            >&#x2022; Email shoudn't be empty.</span
+          >
+          <span
+            class="errmsg"
+            *ngIf="loginData.get('email').hasError('email') && loginData.get('email').touched"
+            >&#x2022; Enter correct email.</span
+          >
+        </div>
+        <ion-item lines="full" class="ion-margin">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input
+            type="password"
+            formControlName="password"
+            required
+          ></ion-input>
+        </ion-item>
+        <div class="error-container">
+          <span
+            class="errmsg"
+            *ngIf="loginData.get('password').hasError('required') && loginData.get('password').touched"
+            >&#x2022; Password shoudn't be empty.</span
+          ><br />
+          <span
+            class="errmsg"
+            *ngIf="loginData.get('password').hasError('minlength') && loginData.get('password').touched"
+            >&#x2022; Password shoud contain atleast 8 characters.</span
+          ><br />
+          <span
+            class="errmsg"
+            *ngIf="loginData.get('password').hasError('pattern') && loginData.get('password').touched"
+            >&#x2022; Must contain: uppercase, lowecase, number and special
+            character.</span
+          >
+        </div>
+      </ion-list>
+    </ion-card>
+    <ion-row>
+      <ion-col>
+        <ion-button
+          type="submit"
+          color="primary"
+          expand="block"
+          (click)="login()"
+          [disabled]="loginData.invalid"
+          >Sign In</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
