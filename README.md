@@ -16,6 +16,8 @@ Softwares needed to be installed and how to install them?
 
 To run the web application on your machine
 ```
+git clone https://github.com/vinay-krishna9/AccentureChallenge-docker.git
+cd AccentureChallenge-docker
 docker-compose build
 docker-compose up
 ```
