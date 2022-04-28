@@ -8,28 +8,36 @@
 </ion-header>
 
 <ion-content *ngIf="country">
-  <ion-card class="card-container">
-    <img [src]="country.flag"/>
-    <ion-card-header>
-      <ion-note
-      class="ion-float-right"
-      [ngClass]="{
-        'good': country.airQuality < '20',
-        'moderate': country.airQuality < '40' && country.airQuality >= '20',
-        'unhealthy': country.airQuality < '60' && country.airQuality >= '40',
-        'very-unhealthy': country.airQuality < '80' && country.airQuality >= '60',
-        'hazardous': country.airQuality >= '80'
-      }"
-    >
-      <h6>{{ getRank(country.airQuality).rank }}</h6>
-    </ion-note>
-      <ion-card-subtitle> {{ country.country.toUpperCase() }} </ion-card-subtitle>
-      <ion-card-title>{{ country.region }}, {{ country.city }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="ion-text-justify">
-      <h6>Population: {{ country.population | number }}</h6> <br>
-      <h6>Air Quality: {{ country.airQuality | number }}</h6> <br>
-      <p> {{ getRank(country.airQuality).desc }} </p>
-    </ion-card-content>
-  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-xl="4" size-md="3" size-xs="0"></ion-col>
+      <ion-col size-xl="4" size-md="6" size-xs="12">
+        <ion-card class="card-container">
+          <img [src]="country.flag"/>
+          <ion-card-header>
+            <ion-note
+            class="ion-float-right"
+            [ngClass]="{
+              'good': country.airQuality < '20',
+              'moderate': country.airQuality < '40' && country.airQuality >= '20',
+              'unhealthy': country.airQuality < '60' && country.airQuality >= '40',
+              'very-unhealthy': country.airQuality < '80' && country.airQuality >= '60',
+              'hazardous': country.airQuality >= '80'
+            }"
+          >
+            <h6>{{ getRank(country.airQuality).rank }}</h6>
+          </ion-note>
+            <ion-card-subtitle> {{ country.country.toUpperCase() }} </ion-card-subtitle>
+            <ion-card-title>{{ country.region }}, {{ country.city }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="ion-text-justify">
+            <h6>Population: {{ country.population | number }}</h6> <br>
+            <h6>Air Quality: {{ country.airQuality | number }}</h6> <br>
+            <p> {{ getRank(country.airQuality).desc }} </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size-xl="4" size-md="3" size-xs="0"></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
